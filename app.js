@@ -2,16 +2,24 @@ async function getRandomDog(){
     console.log('click')
     const url = 'https://random.dog/woof.json';
     displayLoading();
-    const res = await axios.get(url);
-    displayImage(res.data.url);
+    try{
+        const res = await axios.get(url);
+        displayImage(res.data.url);
+    } catch {
+        alert('Could not reach the Dog API. Try again later.')
+    }
 }
 
 async function getRandomCat(){
     console.log('click')
     const url = 'https://aws.random.cat/meow';
     displayLoading();
-    const res = await axios.get(url);
-    displayImage(res.data.file);
+    try{
+        const res = await axios.get(url);
+        displayImage(res.data.url);
+    } catch {
+        alert('Could not reach the Cat API. Try again later.')
+    }
 }
 
 function displayLoading(){
@@ -26,11 +34,11 @@ function displayImage(url){
     const splitURL = url.split('.');
     const vid = document.querySelector('video');
     const img = document.querySelector('img');
-    console.log(url);
-    if (splitURL[splitURL.length-1] === 'mp4'){
+    const fileExt = splitURL[splitURL.length-1];
+    if (fileExt === 'mp4' || fileExt === 'webm'){
         vid.children[0].remove();
         const newSrc = document.createElement('source');
-        newSrc.type = 'video/mp4';
+        newSrc.type = `video/${fileExt}`;
         newSrc.src = url;
         vid.append(newSrc);
         img.classList.add('hidden');
