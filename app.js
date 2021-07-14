@@ -3,10 +3,10 @@ async function getRandomDog(){
     const url = 'https://random.dog/woof.json';
     displayLoading();
     try{
-        const res = await axios.get(url);
+        const res = await axios.get(url, {timeout: 5000});
         displayImage(res.data.url);
-    } catch {
-        alert('Could not reach the Dog API. Try again later.')
+    } catch (err) {
+        alert(`Could not reach the Dog API: ${err.message}`)
     }
 }
 
@@ -15,10 +15,10 @@ async function getRandomCat(){
     const url = 'https://aws.random.cat/meow';
     displayLoading();
     try{
-        const res = await axios.get(url);
-        displayImage(res.data.url);
-    } catch {
-        alert('Could not reach the Cat API. Try again later.')
+        const res = await axios.get(url, {timeout: 5000});
+        displayImage(res.data.file);
+    } catch (err) {
+        alert(`Could not reach the Cat API: ${err.message}`)
     }
 }
 
