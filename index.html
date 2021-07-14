@@ -8,8 +8,18 @@
     <title>Taylor's Website</title>
 </head>
 <body>
-    <button>Random Dog</button><button>Random Cat</button>
-    <img src="" alt="" id='result'>
+    <div id='app'>
+        <div id='buttons'>
+            <button id='dog'>Dog</button><button id='cat'>Cat</button>
+        </div>
+        <div id='display'>
+            <video class='hidden' width='600' height='600' controls autoplay>
+                <source src="" type='video/mp4'>
+                Your browser does not support the video tag.
+            </video>
+            <img src='' alt='' class='hidden'>
+        </div>
+    </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="app.js"></script>
 </body>
